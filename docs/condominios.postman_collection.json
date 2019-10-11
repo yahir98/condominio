@@ -1,0 +1,151 @@
+{
+	"id": "47a10901-1014-4b21-9e34-802224f3b2fb",
+	"name": "condominios",
+	"description": "",
+	"auth": null,
+	"events": null,
+	"variables": [],
+	"order": [
+		"21009761-0fd2-4c28-a047-bef7f1fcd7df",
+		"a53a1c08-8c5c-498f-80f9-e0e20a1e81fc",
+		"a2cc110a-7b8c-4bc3-a627-399c3d87e4be",
+		"ff7a02e9-1d17-428b-aeb3-ced692f9c62a"
+	],
+	"folders_order": [],
+	"protocolProfileBehavior": {},
+	"folders": [],
+	"requests": [
+		{
+			"id": "21009761-0fd2-4c28-a047-bef7f1fcd7df",
+			"name": "post",
+			"url": "http://localhost:3000/api/con/new",
+			"description": "",
+			"data": [
+				{
+					"key": "codigo",
+					"value": "001",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "nombre",
+					"value": "yahir\n",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "apartament",
+					"value": "1",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "cuotamensual",
+					"value": "2500",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataOptions": null,
+			"dataMode": "urlencoded",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"name": "Content-Type",
+					"value": "application/x-www-form-urlencoded",
+					"description": "",
+					"type": "text"
+				}
+			],
+			"method": "POST",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": null,
+			"headers": "Content-Type: application/x-www-form-urlencoded\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "a2cc110a-7b8c-4bc3-a627-399c3d87e4be",
+			"name": "put",
+			"url": "http://localhost:3000/api/con/update/002",
+			"description": "",
+			"data": [
+				{
+					"key": "ajustar",
+					"value": "ADD",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "tipo",
+					"value": "2",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataOptions": null,
+			"dataMode": "urlencoded",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"name": "Content-Type",
+					"value": "application/x-www-form-urlencoded",
+					"description": "",
+					"type": "text"
+				}
+			],
+			"method": "PUT",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": null,
+			"headers": "Content-Type: application/x-www-form-urlencoded\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "a53a1c08-8c5c-498f-80f9-e0e20a1e81fc",
+			"name": "get",
+			"url": "",
+			"description": "",
+			"data": null,
+			"dataOptions": null,
+			"dataMode": null,
+			"headerData": [],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": null,
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "ff7a02e9-1d17-428b-aeb3-ced692f9c62a",
+			"name": "delete",
+			"url": "http://localhost:3000/api/con/delete/002",
+			"description": "",
+			"data": null,
+			"dataOptions": null,
+			"dataMode": null,
+			"headerData": [],
+			"method": "DELETE",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": null,
+			"headers": "",
+			"pathVariables": {}
+		}
+	]
+}
