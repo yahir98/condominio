@@ -1,28 +1,21 @@
-var express= require('express');
+var express = require('express');
 var router = express.Router();
 var fileModel = require('../filemodel');
 
 var conCollection = fileModel.getCondominios();
 
-router.get('/', function(req, res){
+router.get('/', function (req, res) {
   res.json({
-    "entity":"Condominios",
-    "version":"0.0.1"
+    "entity": "condominios",
+    "version": "0.0.1"
   });
 }); //get
 
+router.get('/all', function(req, res){
+    conCollection = fileModel.getCondominios();
+    res.json(conCollection);
+  }); // get /all
 
-router.get('/all', function(req,res){
- conCollection=fileModel.getCondominios();
- res.json(conCollection);
-
-}) //get all
-
-module.exports = router;
-
-
-
-//metodo post//********************************************* */
 router.post('/new', function(req, res){
     conCollection = fileModel.getCondominios();
     var newCondominios = Object.assign(
@@ -30,16 +23,16 @@ router.post('/new', function(req, res){
        req.body,
        {
            "nombre": req.body.nombre,
-           "apartament": parseFloat(req.body.apartament),
-           "cuotaMensual": parseFloat(req.body.cuota)
+           "apartament": parseInt(req.body.apartament),
+           "cuotaMensual": parseFloat(req.body.cuotaMensual)
        }
     );
-    var condominioExists = conCollection.find(
+    var condominiosExists = conCollection.find(
       function(o, i){
         return o.codigo === newCondominios.codigo;
       }
     )
-    if( ! condominioExists ){
+    if( ! condominiosExists ){
       conCollection.push(newCondominios);
       fileModel.setCondominios(
          conCollection,
@@ -55,3 +48,36 @@ router.post('/new', function(req, res){
       res.status(400).json({"error":"No se pudo ingresar objeto"});
     }
  }); // post /new
+
+ router.put('/update/:conCodigo',
+  function(req, res){
+      conCollection = fileModel.getCondominios();
+      var conCodigoToModify = req.params.conCodigo;
+      var amountToAdjust = parseInt(req.body.ajustar);
+      var adjustType = req.body.tipo || 'SUB';
+      var adjustHow = (adjustType == 'ADD' ? 1 : -1);
+      var modCondominios = {};
+      var newCondominiosArray = conCollection.map(
+        function(o,i){
+          if( conCodigoToModify === o.codigo){
+             o.cuotaMensual = adjustType;
+             modCondominios = Object.assign({}, o);
+          }
+          return o;
+        }
+      ); // end map
+    conCollection = newCondominiosArray;
+    fileModel.setCondominios(
+      conCollection,
+      function (err, savedSuccesfully) {
+        if (err) {
+          res.status(400).json({ "error": "No se pudo actualizar objeto" });
+        } else {
+          res.json(modCondominios);  // req.body ===  $_POST[]
+        }
+      }
+    );
+  }
+);// put :prdsku
+
+module.exports = router;
